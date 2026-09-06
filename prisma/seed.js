@@ -13,7 +13,8 @@ const products = [
   { name: "Care mini-kit", description: "Soap, toothpaste & laundry tabs", category: "care", price: 179, stock: 25 },
 ];
 
-const adminPassword = process.env.ADMIN_PASSWORD || "StudentPantryAdmin2026!";
+const adminPassword = process.env.ADMIN_PASSWORD;
+if (!adminPassword) throw new Error("Set ADMIN_PASSWORD in .env before seeding");
 
 await prisma.user.upsert({
   where: { email: "admin@studentpantry.local" },
@@ -27,5 +28,5 @@ for (const product of products) {
 
 console.log("Student Pantry seed complete.");
 console.log("Admin email: admin@studentpantry.local");
-console.log(`Admin password: ${adminPassword}`);
+console.log("Admin password loaded from ADMIN_PASSWORD in .env");
 await prisma.$disconnect();

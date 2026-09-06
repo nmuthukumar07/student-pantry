@@ -37,9 +37,4 @@ Open `http://localhost:4000`.
 
 ## Admin Demo Account
 
-Use this seeded account for the admin API/admin workbench:
-
-- Email: `admin@studentpantry.local`
-- Password: `StudentPantryAdmin2026!`
-
-Set `ADMIN_PASSWORD` before running the seed command to use a different password. Do not use the demo password in production.
+The seed command creates the admin account using the private `ADMIN_PASSWORD` value in your local `.env`. Do not commit or share that password. Use the staff email configured by your deployment environment.
