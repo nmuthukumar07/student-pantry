@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles.css" />
     <style>
       .utility-section{padding-top:44px}.utility-panel{align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;display:flex;gap:16px;margin-top:22px;padding:20px}.utility-panel strong{font-family:"Space Grotesk",sans-serif;font-size:16px}.utility-panel p{color:var(--muted);font-size:13px;line-height:1.5;margin:6px 0 0}.utility-panel .text-button{margin-left:auto;white-space:nowrap}.utility-icon{align-items:center;background:var(--lime);border-radius:50%;display:flex;flex:0 0 42px;font-size:20px;height:42px;justify-content:center}.help-grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}@media(max-width:760px){.help-grid{grid-template-columns:1fr}.utility-panel{align-items:flex-start;flex-wrap:wrap}.utility-panel .text-button{margin-left:58px}}
+      .checkout-modal{align-items:center;background:rgba(24,59,55,.4);display:flex;inset:0;justify-content:center;padding:20px;position:fixed;z-index:8}.checkout-modal[hidden]{display:none}.checkout-card{background:var(--paper);border-radius:12px;box-shadow:0 20px 60px rgba(24,59,55,.25);max-width:430px;padding:30px;position:relative;width:100%}.checkout-card h2{font-size:30px}.checkout-copy{color:var(--muted);font-size:13px;line-height:1.5}.modal-close{background:none;border:0;font-size:28px;position:absolute;right:16px;top:13px}.payment-options{display:grid;gap:9px;margin:22px 0}.payment-option{background:var(--paper);border:1px solid var(--line);border-radius:6px;color:var(--ink);padding:13px;text-align:left}.payment-option.active,.payment-option:hover{border-color:var(--orange);background:#fff4ed}
     </style>
   </head>
   <body>
@@ -103,6 +104,15 @@
           <button class="checkout-button" id="checkout-button" type="button">Reserve for pickup <span>→</span></button>
         </div>
       </aside>
+      <div class="checkout-modal" id="checkout-modal" hidden>
+        <div class="checkout-card" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+          <button class="modal-close" id="close-checkout" type="button" aria-label="Close payment">×</button>
+          <p class="eyebrow">Quick checkout</p><h2 id="checkout-title">Reserve your pickup</h2>
+          <p class="checkout-copy">Choose a payment method for this prototype. No real money will be charged.</p>
+          <div class="payment-options"><button class="payment-option active" type="button">▣ UPI / card demo</button><button class="payment-option" type="button">◉ Pay at pickup</button></div>
+          <button class="checkout-button" id="confirm-payment" type="button">Confirm reservation <span>→</span></button>
+        </div>
+      </div>
       <button class="basket-fab" id="basket-fab" type="button"><span>Basket</span><strong id="basket-count">0</strong><span>→</span></button>
       <div class="toast" id="toast" role="status"></div>
     </div>

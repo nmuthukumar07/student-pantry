@@ -17,7 +17,7 @@ const fallbackProducts = [
 ];
 
 let products = [];
-const state = { cart: [], filter: "all", category: "all" };
+const state = { cart: [], orders: [], filter: "all", category: "all" };
 const categoryRow = document.querySelector("#category-row");
 const restaurantGrid = document.querySelector("#restaurant-grid");
 const cartDrawer = document.querySelector("#cart-drawer");
@@ -89,10 +89,23 @@ document.querySelector("#basket-fab").addEventListener("click", () => cartDrawer
 document.querySelector("#close-cart").addEventListener("click", () => cartDrawer.classList.remove("open"));
 document.querySelector("#checkout-button").addEventListener("click", () => {
   if (!state.cart.length) return showToast("Add something to your basket first");
+  document.querySelector("#checkout-modal").hidden = false;
+});
+document.querySelector("#close-checkout").addEventListener("click", () => { document.querySelector("#checkout-modal").hidden = true; });
+document.querySelectorAll(".payment-option").forEach((button) => button.addEventListener("click", () => {
+  document.querySelectorAll(".payment-option").forEach((item) => item.classList.toggle("active", item === button));
+}));
+document.querySelector("#confirm-payment").addEventListener("click", () => {
+  const order = { id: `SP-${String(Date.now()).slice(-6)}`, total: state.cart.reduce((sum, item) => sum + item.price, 0), items: state.cart.length };
+  state.orders.unshift(order);
   state.cart = [];
   renderCart();
+  document.querySelector("#checkout-modal").hidden = true;
   cartDrawer.classList.remove("open");
-  showToast("Reserved! Pick up from the Student Centre today");
+  const orderSection = document.querySelector("#orders .utility-panel");
+  orderSection.innerHTML = `<span class="utility-icon">✓</span><div><strong>Order ${order.id} confirmed</strong><p>${order.items} item(s) reserved for pickup at the Student Centre. Total: ₹${order.total}</p></div>`;
+  showToast(`Order ${order.id} confirmed for pickup`);
+  document.querySelector("#orders").scrollIntoView({ behavior: "smooth" });
 });
 document.querySelector("#view-all").addEventListener("click", () => { state.category = "all"; state.filter = "all"; renderCategories(); renderProducts(); document.querySelector("#restaurant-section").scrollIntoView({ behavior: "smooth" }); });
 
