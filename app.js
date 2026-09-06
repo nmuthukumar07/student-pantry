@@ -37,7 +37,9 @@ function renderCategories() {
 function renderProducts() {
   const visible = products.filter((product) => {
     const matchesCategory = state.category === "all" || product.category === state.category || product.filter === state.category;
-    const matchesFilter = state.filter === "all" || product.filter === state.filter || (state.filter === "under-200" && product.price < 200);
+    const vegetarianCategories = ["breakfast", "snacks", "meals", "drinks"];
+    const matchesVegetarian = state.filter === "veg" && vegetarianCategories.includes(product.category);
+    const matchesFilter = state.filter === "all" || product.filter === state.filter || matchesVegetarian || (state.filter === "under-200" && product.price < 200);
     return matchesCategory && matchesFilter;
   });
   restaurantGrid.innerHTML = visible.length ? visible.map((product) => `
