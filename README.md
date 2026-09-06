@@ -20,7 +20,7 @@ College students often lose valuable class and exam-preparation time standing in
 
 ## Run Locally
 
-Node.js 20+ and PostgreSQL 17+ are required for the database-backed app.
+Node.js 20+ is required for the local database-backed app. Local development uses SQLite so the project can run without installing a separate database server.
 
 ```powershell
 npm install
@@ -30,6 +30,8 @@ npm run db:migrate
 npm run db:seed
 npm start
 ```
+
+For production, change `DATABASE_URL` and the Prisma provider to a managed PostgreSQL database.
 
 Open `http://localhost:4000`.
 
