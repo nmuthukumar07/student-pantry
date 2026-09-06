@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .utility-section{padding-top:44px}.utility-panel{align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;display:flex;gap:16px;margin-top:22px;padding:20px}.utility-panel strong{font-family:"Space Grotesk",sans-serif;font-size:16px}.utility-panel p{color:var(--muted);font-size:13px;line-height:1.5;margin:6px 0 0}.utility-panel .text-button{margin-left:auto;white-space:nowrap}.utility-icon{align-items:center;background:var(--lime);border-radius:50%;display:flex;flex:0 0 42px;font-size:20px;height:42px;justify-content:center}.help-grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}@media(max-width:760px){.help-grid{grid-template-columns:1fr}.utility-panel{align-items:flex-start;flex-wrap:wrap}.utility-panel .text-button{margin-left:58px}}
+    </style>
   </head>
   <body>
     <div class="app-shell">
@@ -77,6 +80,16 @@
             <button class="filter-chip" data-filter="bundle" type="button">Bundles</button>
           </div>
           <div class="restaurant-grid" id="restaurant-grid"></div>
+        </section>
+
+        <section class="content-section utility-section" id="orders">
+          <div class="section-heading"><div><p class="eyebrow">Pickup history</p><h2>Your orders</h2></div></div>
+          <div class="utility-panel"><span class="utility-icon">✓</span><div><strong>No orders yet</strong><p>Your reserved pantry pickups will appear here after checkout.</p></div><a class="text-button" href="#restaurant-section">Shop essentials <span>→</span></a></div>
+        </section>
+
+        <section class="content-section utility-section" id="help">
+          <div class="section-heading"><div><p class="eyebrow">Need a hand?</p><h2>Help &amp; support</h2></div></div>
+          <div class="help-grid"><div class="utility-panel"><span class="utility-icon">?</span><div><strong>Pickup questions</strong><p>Ask the Student Centre desk about collection times and availability.</p></div></div><div class="utility-panel"><span class="utility-icon">@</span><div><strong>Contact the pantry team</strong><p>Email pantry-support@studentpantry.local for help with an order.</p></div></div></div>
         </section>
       </main>
 
